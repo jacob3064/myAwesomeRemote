@@ -1,0 +1,13 @@
+USER_SECTIONS .vector
+LOAD 0x20000000 0xF0000000 ; address base 0x20000000, max_size=8M
+{
+	ROM 0x20000000
+	{
+		* (.vector)
+		* (+ISR,+RO)
+		LOADADDR NEXT __data_lmastart
+		ADDR NEXT __data_start		
+		* (+RW,+ZI)
+		STACK = 0x21000000
+	}	
+}
